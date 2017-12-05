@@ -1,4 +1,4 @@
-package main
+package gomapsql
 
 import "fmt"
 import "github.com/luyucia/gomapsql"
