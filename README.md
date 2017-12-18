@@ -26,7 +26,18 @@ go get github.com/mattn/go-sqlite3
 go get github.com/luyucia/gomapsql
 ```
 
+### 使用
+## 装载
+```
+mapsql.LoadMap(datamap,"tablename")
+```
 
+## 在map上执行sql操作
+```
+mapsql.Sql(datamap,sql)
+```
+
+## 样例
 ```
     import "github.com/luyucia/gomapsql"
     import "fmt"
@@ -45,13 +56,18 @@ go get github.com/luyucia/gomapsql
     mapsql := &gomapsql.Mapsql{}
     mapsql.New()
 
-    // 在map上操作sql
-    // 注意,这里默认的表名是data
-    sql := `select * from data a join data2 b on a.id=b.id order by uv asc`
-    fmt.Println(mapsql.SqlMap(sql,data))
+    // 装载map到t1
+    mapsql.LoadMap(data,"t1")
 
-    // 加载数据,以便做sql操作,第二个参数是表名
-    mapsql.LoadMap(data,"data2")
+    // 装载map到t2
+    mapsql.LoadMap(data,"t2")
+
+    // 在map上操作sql
+    sql := `select * from t1 a join t2 b on a.id=b.id order by uv asc`
+    fmt.Println(mapsql.Sql(sql))
+
+    // 清理
+    mapsql.Clean()
 
 
     }
