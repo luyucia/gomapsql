@@ -34,7 +34,7 @@ mapsql.LoadMap(datamap,"tablename")
 
 ## 在map上执行sql操作
 ```
-mapsql.Sql(datamap,sql)
+mapsql.Sql(sql)
 ```
 
 ## 样例
